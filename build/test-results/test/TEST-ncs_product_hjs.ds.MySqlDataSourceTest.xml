@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ncs_product_hjs.ds.MySqlDataSourceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-01T10:16:21" hostname="DESKTOP-N07LD55" time="1.262">
+  <properties/>
+  <testcase name="testGetConnection" classname="ncs_product_hjs.ds.MySqlDataSourceTest" time="1.262"/>
+  <system-out><![CDATA[TRACE [Test worker] - setUpBeforeClass()
+TRACE [Test worker] - setUp()
+TRACE [Test worker] - testGetConnection()
+TRACE [Test worker] - HikariProxyConnection@363665440 wrapping com.mysql.jdbc.JDBC4Connection@548d5758
+TRACE [Test worker] - tearDown()
+TRACE [Test worker] - tearDownAfterClass()
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
