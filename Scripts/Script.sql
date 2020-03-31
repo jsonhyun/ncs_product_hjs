@@ -12,4 +12,16 @@ insert into product values
 ('B003','팥빙수'),
 ('B004','아이스초코');
 
-insert into sale values
+select p.product_code, p.product_name, s.price, s.sale_cnt, 
+	   round((s.price * s.sale_cnt)-(s.price * s.sale_cnt/11)) as '공급가액', 
+       round(s.price * s.sale_cnt/11) as '부가세액', (s.price * s.sale_cnt) as '판매금액', 
+       s.margin_rate, round(((s.price * s.sale_cnt)-(s.price * s.sale_cnt/11))*(s.margin_rate*0.01)) as '마진액' 
+  from sale s left join product p on s.product_code = p.product_code
+order by s.price * s.sale_cnt desc;
+
+select p.product_code, p.product_name, s.price, s.sale_cnt, 
+	   round((s.price * s.sale_cnt)-(s.price * s.sale_cnt/11)) as '공급가액', 
+       round(s.price * s.sale_cnt/11) as '부가세액', (s.price * s.sale_cnt) as '판매금액', 
+       s.margin_rate, round(((s.price * s.sale_cnt)-(s.price * s.sale_cnt/11))*(s.margin_rate*0.01)) as '마진액' 
+  from sale s left join product p on s.product_code = p.product_code
+order by round(((s.price * s.sale_cnt)-(s.price * s.sale_cnt/11))*(s.margin_rate*0.01)) desc;
