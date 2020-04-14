@@ -5,9 +5,9 @@ import javax.swing.SwingConstants;
 import ncs_product_hjs.dto.SalesMoneyRanking;
 
 @SuppressWarnings("serial")
-public class SalesMoneyRankingTblPanel extends AbstractTblPanel<SalesMoneyRanking> {
+public class MarginMoneyRankingTblPanel extends AbstractTblPanel<SalesMoneyRanking> {
 
-	public SalesMoneyRankingTblPanel() {
+	public MarginMoneyRankingTblPanel() {
 	}
 
 	@Override

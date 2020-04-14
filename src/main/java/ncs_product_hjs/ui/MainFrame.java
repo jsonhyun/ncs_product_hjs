@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import ncs_product_hjs.dto.Product;
 import ncs_product_hjs.dto.Sale;
+import ncs_product_hjs.ui.list.MarginMoneyRankingTblPanel;
 import ncs_product_hjs.ui.list.SalesMoneyRankingTblPanel;
 import ncs_product_hjs.ui.service.ProductUIService;
 import ncs_product_hjs.ui.service.SaleUIService;
@@ -38,6 +39,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	private JButton btnAdd;
 	private SaleUIService sService;
 	private JButton btnPrint1;
+	private JButton btnPrint2;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -135,7 +137,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		btnPrint1.addActionListener(this);
 		pBtns.add(btnPrint1);
 		
-		JButton btnPrint2 = new JButton("출력2");
+		btnPrint2 = new JButton("출력2");
+		btnPrint2.addActionListener(this);
 		pBtns.add(btnPrint2);
 	}
 	public void keyPressed(KeyEvent e) {
@@ -154,6 +157,9 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnPrint2) {
+			btnPrint2ActionPerformed(e);
+		}
 		if (e.getSource() == btnPrint1) {
 			btnPrint1ActionPerformed(e);
 		}
@@ -181,8 +187,21 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		tfRate.setText("");
 	}
 	protected void btnPrint1ActionPerformed(ActionEvent e) {
-		SalesMoneyRankingFrame frame = new SalesMoneyRankingFrame();
+		JFrame frame = new JFrame();
+		frame.setTitle("판매 금액 순위");
+		frame.setBounds(100, 100, 1000, 300);
+		SalesMoneyRankingTblPanel panel = new SalesMoneyRankingTblPanel();
+		panel.loadData(sService.showSalesMoneyRankingList());
+		frame.getContentPane().add(panel);
 		frame.setVisible(true);
-		
+	}
+	protected void btnPrint2ActionPerformed(ActionEvent e) {
+		JFrame frame = new JFrame();
+		frame.setTitle("마진액 순위");
+		frame.setBounds(100, 100, 1000, 300);
+		MarginMoneyRankingTblPanel panel = new MarginMoneyRankingTblPanel();
+		panel.loadData(sService.showMarginMonyRankingList());
+		frame.getContentPane().add(panel);
+		frame.setVisible(true);
 	}
 }

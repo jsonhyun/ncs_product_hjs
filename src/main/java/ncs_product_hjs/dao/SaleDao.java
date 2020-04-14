@@ -7,7 +7,7 @@ import ncs_product_hjs.dto.SalesMoneyRanking;
 
 public interface SaleDao {
 	List<SalesMoneyRanking> selectSaleMoney();
-	List<Sale> selectMarginRanking();
+	List<SalesMoneyRanking> selectMarginMoney();
 	
 	void insertSale(Sale sale);
 	

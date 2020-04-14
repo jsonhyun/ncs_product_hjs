@@ -58,8 +58,22 @@ public class SaleDaoImpl implements SaleDao {
 	}
 
 	@Override
-	public List<Sale> selectMarginRanking() {
-		// TODO Auto-generated method stub
+	public List<SalesMoneyRanking> selectMarginMoney() {
+		String sql = "select p.product_code, p.product_name, s.price, s.sale_cnt, round((s.price * s.sale_cnt)-(s.price * s.sale_cnt/11)) as '공급가액', " 
+	               + "round(s.price * s.sale_cnt/11) as '부가세액', (s.price * s.sale_cnt) as '판매금액', s.margin_rate, " 
+				   + "round(((s.price * s.sale_cnt)-(s.price * s.sale_cnt/11))*(s.margin_rate*0.01)) as '마진액' " 
+	               + "from sale s left join product p on s.product_code = p.product_code order by round(((s.price * s.sale_cnt)-(s.price * s.sale_cnt/11))*(s.margin_rate*0.01)) desc";
+		try(Connection con = MySqlDataSource.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			List<SalesMoneyRanking> list = new ArrayList<>();
+			while(rs.next()) {
+				list.add(getSaleRanking(rs));
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

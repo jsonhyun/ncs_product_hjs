@@ -17,4 +17,8 @@ public class SaleUIService {
 	public List<SalesMoneyRanking> showSalesMoneyRankingList(){
 		return dao.selectSaleMoney();
 	}
+	
+	public List<SalesMoneyRanking> showMarginMonyRankingList(){
+		return dao.selectMarginMoney();
+	}
 }
